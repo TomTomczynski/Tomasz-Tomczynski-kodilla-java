@@ -14,8 +14,8 @@ public class ShapeCollector {
 
     }
 
-    public Square getFigure(int n){
-        return (Square) theShapeCollector.get(n);
+    public Shape getFigure(int n){
+        return theShapeCollector.get(n);
     }
 
     public void showFigures(){

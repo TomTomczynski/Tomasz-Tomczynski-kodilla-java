@@ -19,7 +19,7 @@ public class Triangle  implements Shape{
 
     @Override
     public Double getField() {
-        return toDouble((base*height)/2);
+        return ((base*height)/2.0);
     }
 }
 

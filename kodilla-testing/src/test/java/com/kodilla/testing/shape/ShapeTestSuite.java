@@ -1,4 +1,4 @@
-package com.kodilla.testing.com.kodilla.testing.shape;
+package com.kodilla.testing.shape;
 
 import com.kodilla.testing.com.kodilla.testing.collection.com.kodilla.testing.shape.*;
 import org.junit.*;
@@ -64,7 +64,7 @@ public class ShapeTestSuite {
         Square theSquere = new Square(5);
         shapeCollector.addFigure(theSquere);
         //When
-        Square result = shapeCollector.getFigure(0);
+        Shape result = shapeCollector.getFigure(0);
         //Then
         Assert.assertEquals(theSquere, result);
     }
@@ -88,9 +88,9 @@ public class ShapeTestSuite {
         Triangle theTriangle = new Triangle(10, 10);
         shapeCollector.addFigure(theTriangle);
         //When
-        String result = shapeCollector.
+        double result = shapeCollector.getFigure(0).getField();
         //Then
-        Assert.assertEquals(50,result);
+        Assert.assertEquals(50,result,0.001);
 
     }
 }
