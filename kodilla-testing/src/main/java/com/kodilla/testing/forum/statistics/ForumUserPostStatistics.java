@@ -15,9 +15,22 @@ public class ForumUserPostStatistics  {
         numbersOfUsers = statistics.usersNames().size();
         numberOfPosts = statistics.postsCount();
         numberOfCmments = statistics.commentsCount();
-        avePostsPerUser = (double)(statistics.postsCount()/statistics.usersNames().size());
-        aveCommentsPerUser = (double)(statistics.commentsCount()/statistics.usersNames().size());
-        averageNumberOfCommentsPerPost = (double)(statistics.commentsCount()/statistics.postsCount());
+//        avePostsPerUser = (double)(statistics.postsCount()/statistics.usersNames().size());
+        if(statistics.usersNames().size() == 0 ){
+            avePostsPerUser=0;
+        } else {
+            avePostsPerUser = (double)(statistics.postsCount()/statistics.usersNames().size());
+        };
+        if (statistics.usersNames().size() == 0 ) {
+            aveCommentsPerUser = 0;
+        } else {
+            aveCommentsPerUser = (double)(statistics.commentsCount()/statistics.usersNames().size());
+        };
+        if(statistics.postsCount() == 0 ){
+            averageNumberOfCommentsPerPost=0;
+        } else {
+            averageNumberOfCommentsPerPost = (double)(statistics.commentsCount()/statistics.postsCount());
+        };
     }
 
     void showStatistics() {
