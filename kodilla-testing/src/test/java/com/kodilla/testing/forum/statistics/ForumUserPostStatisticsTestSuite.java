@@ -35,37 +35,59 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(0);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(10);
+        when(ststisticMock.postsCount()).thenReturn(0);
+        when(ststisticMock.commentsCount()).thenReturn(10);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        int resoult = forumUserPostStatitics.getNumberOfCmments();
+        int numberOfCmments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
+
 
         //Then
-        Assert.assertEquals(0, resoult);
+        Assert.assertEquals(10, numberOfCmments);
+        Assert.assertEquals(0, numberOfPosts);
+        Assert.assertEquals(10, numbersOfUsers);
+        Assert.assertEquals(0, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(10/10, aveCommentsPerUser,0.01);
+        Assert.assertEquals(0, avePostsPerUser,0.01);
     }
 
     @Test
     public void testCalculateAdvStatistics_2() {
-        //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(1000);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(10);
+        when(ststisticMock.postsCount()).thenReturn(1000);
+        when(ststisticMock.commentsCount()).thenReturn(10);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        int resoult = forumUserPostStatitics.getNumberOfCmments();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
+
+
 
         //Then
-        Assert.assertEquals(1000, resoult);
+        Assert.assertEquals(10, numberOfComments);
+        Assert.assertEquals(1000, numberOfPosts);
+        Assert.assertEquals(10, numbersOfUsers);
+        Assert.assertEquals(10/1000, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(1, aveCommentsPerUser,0.01);
+        Assert.assertEquals(1000/10, avePostsPerUser,0.01);
     }
 
     @Test
@@ -73,18 +95,28 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(0);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(0);
+        when(ststisticMock.postsCount()).thenReturn(100);
+        when(ststisticMock.commentsCount()).thenReturn(0);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        int resoult = forumUserPostStatitics.getNumberOfCmments();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
 
         //Then
-        Assert.assertEquals(0, resoult);
+        Assert.assertEquals(0, numberOfComments);
+        Assert.assertEquals(100, numberOfPosts);
+        Assert.assertEquals(10, numbersOfUsers);
+        Assert.assertEquals(0/100, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(0/10, aveCommentsPerUser,0.01);
+        Assert.assertEquals(100/10, avePostsPerUser,0.01);
     }
 
     @Test
@@ -92,18 +124,28 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(20);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
         when(ststisticMock.postsCount()).thenReturn(100);
+        when(ststisticMock.commentsCount()).thenReturn(1000);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        double resoult = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
 
         //Then
-        Assert.assertEquals(20 / 100, resoult, 0.001);
+        Assert.assertEquals(1000, numberOfComments);
+        Assert.assertEquals(100, numberOfPosts);
+        Assert.assertEquals(10, numbersOfUsers);
+        Assert.assertEquals(1000/100, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(1000/10, aveCommentsPerUser,0.01);
+        Assert.assertEquals(100/10, avePostsPerUser,0.01);
     }
 
     @Test
@@ -111,18 +153,28 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(100);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(35);
+        when(ststisticMock.postsCount()).thenReturn(1000);
+        when(ststisticMock.commentsCount()).thenReturn(200);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        double resoult = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
 
         //Then
-        Assert.assertEquals(100 / 35, resoult, 0.001);
+        Assert.assertEquals(200, numberOfComments);
+        Assert.assertEquals(1000, numberOfPosts);
+        Assert.assertEquals(10, numbersOfUsers);
+        Assert.assertEquals(200/1000, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(200/10, aveCommentsPerUser,0.01);
+        Assert.assertEquals(1000/10, avePostsPerUser,0.01);
     }
 
     @Test
@@ -130,17 +182,27 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(100);
         List<String> usersNames = new ArrayList<>();
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(35);
+        when(ststisticMock.postsCount()).thenReturn(1000);
+        when(ststisticMock.commentsCount()).thenReturn(200);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        int resoult = forumUserPostStatitics.getNumbersOfUsers();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
 
         //Then
-        Assert.assertEquals(0, resoult);
+        Assert.assertEquals(200, numberOfComments);
+        Assert.assertEquals(1000, numberOfPosts);
+        Assert.assertEquals(0, numbersOfUsers);
+        Assert.assertEquals(200/1000, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(0, aveCommentsPerUser,0.01);
+        Assert.assertEquals(0, avePostsPerUser,0.01);
     }
 
     @Test
@@ -148,17 +210,27 @@ public class ForumUserPostStatisticsTestSuite {
         //Given
         ForumUserPostStatistics forumUserPostStatitics = new ForumUserPostStatistics();
         Statistics ststisticMock = mock(Statistics.class);
-        when(ststisticMock.commentsCount()).thenReturn(100);
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < 100; i++) usersNames.add("User_" + (i + 1));
         when(ststisticMock.usersNames()).thenReturn(usersNames);
-        when(ststisticMock.postsCount()).thenReturn(35);
+        when(ststisticMock.postsCount()).thenReturn(1000);
+        when(ststisticMock.commentsCount()).thenReturn(200);
 
         //When
         forumUserPostStatitics.calculateAdvStatistics(ststisticMock);
-        int resoult = forumUserPostStatitics.getNumbersOfUsers();
+        int numberOfComments = forumUserPostStatitics.getNumberOfComments();
+        int numberOfPosts = forumUserPostStatitics.getNumberOfPosts();
+        int numbersOfUsers = forumUserPostStatitics.getNumbersOfUsers();
+        double averageNumberOfCommentsPerPost = forumUserPostStatitics.getAverageNumberOfCommentsPerPost();
+        double aveCommentsPerUser = forumUserPostStatitics.getAveCommentsPerUser();
+        double avePostsPerUser = forumUserPostStatitics.getAvePostsPerUser();
 
         //Then
-        Assert.assertEquals(100, resoult);
+        Assert.assertEquals(200, numberOfComments);
+        Assert.assertEquals(1000, numberOfPosts);
+        Assert.assertEquals(100, numbersOfUsers);
+        Assert.assertEquals(200/1000, averageNumberOfCommentsPerPost,0.01);
+        Assert.assertEquals(200/100, aveCommentsPerUser,0.01);
+        Assert.assertEquals(1000/100, avePostsPerUser,0.01);
     }
 }

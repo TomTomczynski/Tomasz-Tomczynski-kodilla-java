@@ -6,7 +6,7 @@ public class ForumUserPostStatistics  {
 
     int     numbersOfUsers;
     int     numberOfPosts;
-    int     numberOfCmments;
+    int     numberOfComments;
     double  avePostsPerUser;
     double  aveCommentsPerUser;
     double  averageNumberOfCommentsPerPost;
@@ -14,7 +14,7 @@ public class ForumUserPostStatistics  {
     void calculateAdvStatistics(Statistics statistics){
         numbersOfUsers = statistics.usersNames().size();
         numberOfPosts = statistics.postsCount();
-        numberOfCmments = statistics.commentsCount();
+        numberOfComments = statistics.commentsCount();
 //        avePostsPerUser = (double)(statistics.postsCount()/statistics.usersNames().size());
         if(statistics.usersNames().size() == 0 ){
             avePostsPerUser=0;
@@ -36,7 +36,7 @@ public class ForumUserPostStatistics  {
     void showStatistics() {
         System.out.print("Number of users: " + getNumbersOfUsers());
         System.out.print("Number of posts" + getNumberOfPosts());
-        System.out.print("Number of comments:" + getNumberOfCmments());
+        System.out.print("Number of comments:" + getNumberOfComments());
         System.out.print("The average number of posts per user::" + getAvePostsPerUser());
         System.out.print("The average number of comments per user:" + getAveCommentsPerUser());
         System.out.print("The average number of comments per post:" + getAverageNumberOfCommentsPerPost());
@@ -49,8 +49,8 @@ public class ForumUserPostStatistics  {
         return numberOfPosts;
     }
 
-    public int getNumberOfCmments() {
-        return numberOfCmments;
+    public int getNumberOfComments() {
+        return numberOfComments;
     }
 
     public double getAvePostsPerUser() {
