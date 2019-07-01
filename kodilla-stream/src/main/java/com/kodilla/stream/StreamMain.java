@@ -1,9 +1,9 @@
 package com.kodilla.stream;
 
 
+import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.lambda.ExecuteSaySomething;
 import com.kodilla.stream.lambda.ExpressionExecutor;
-import com.kodilla.stream.lambda.MathExpression;
 import com.kodilla.stream.lambda.Processor;
 
 
@@ -14,12 +14,23 @@ public class StreamMain {
         processor.execute(executeSaySomething);
 
 //        Executor codeToExecute = () -> System.out.println("This is lambda.");
-        processor.execute(() -> System.out.println("This is lambda."));
+//        processor.execute(() -> System.out.println("This is lambda."));
 
         ExpressionExecutor expressionExecutor = new ExpressionExecutor();
-        expressionExecutor.executeExpression(10, 5, (a1, b1) -> a1 + b1);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+//        expressionExecutor.executeExpression(10, 5, (a1, b1) -> a1 + b1);
+//        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
+//        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
+//        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+
+
+        PoemBeautifier thePoem = new PoemBeautifier();
+        String theText = "This is Thom's text for testing.";
+        thePoem.beautify(theText, (String) -> "!!!! " + theText + " !!!!" + '\n');
+        thePoem.beautify(theText, (String) -> theText.toLowerCase() + '\n');
+        thePoem.beautify(theText, (String) -> theText.toUpperCase() + '\n');
+        thePoem.beautify(theText, (String) -> {
+            StringBuilder theStrigBuilder = new StringBuilder(theText);
+            return (theStrigBuilder.reverse().toString());
+        });
     }
 }
