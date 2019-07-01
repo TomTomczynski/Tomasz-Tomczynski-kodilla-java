@@ -3,11 +3,9 @@ package com.kodilla.testing.library;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -101,7 +99,7 @@ public class BookDirectoryTestSuite {
 
 
     @Test
-    private void testlistBooksInHandsOf() {
+    public void testListBooksInHandsOf0() {
         // Given
 
         LibraryUser libraryUser = new LibraryUser("firstname", "lastname", "159874521");
@@ -113,8 +111,37 @@ public class BookDirectoryTestSuite {
         List<Book> result = library.listBooksInHandsOf(libraryUser);
         // Then
         assertEquals(0, result.size());
-
-
     }
+
+    @Test
+    public void testListBooksInHandsOf1() {
+        // Given
+
+        LibraryUser libraryUser = new LibraryUser("firstname", "lastname", "159874521");
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary library = new BookLibrary(libraryDatabaseMock);
+        List<Book> listOf0Books = generateListOfNBooks(1);
+        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(listOf0Books);
+        // When
+        List<Book> result = library.listBooksInHandsOf(libraryUser);
+        // Then
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    public void testListBooksInHandsOfMordThenFive() {
+        // Given
+
+        LibraryUser libraryUser = new LibraryUser("firstname", "lastname", "159874521");
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary library = new BookLibrary(libraryDatabaseMock);
+        List<Book> listOf0Books = generateListOfNBooks(7);
+        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(listOf0Books);
+        // When
+        List<Book> result = library.listBooksInHandsOf(libraryUser);
+        // Then
+        assertEquals(7, result.size());
+    }
+
 
 }
