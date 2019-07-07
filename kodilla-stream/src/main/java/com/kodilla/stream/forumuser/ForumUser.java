@@ -36,4 +36,15 @@ public final class ForumUser {
     public int getNumberOfPostPublikatetd() {
         return numberOfPostPublikatetd;
     }
+
+    @Override
+    public String toString() {
+        return "ForumUser{" +
+                "usrID=" + usrID +
+                ", fullName='" + fullName + '\'' +
+                ", sex=" + sex +
+                ", dateOfBirth=" + dateOfBirth +
+                ", numberOfPostPublikatetd=" + numberOfPostPublikatetd +
+                '}';
+    }
 }
