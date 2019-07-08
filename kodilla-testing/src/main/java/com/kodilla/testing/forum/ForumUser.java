@@ -11,7 +11,7 @@ public class ForumUser {
 
 
     public ForumUser(String name, String realName) {
-        //name visible on forum
+        //name visible on forumuser
         this.name = name;
         //real name of the user
         this.realName = realName;
