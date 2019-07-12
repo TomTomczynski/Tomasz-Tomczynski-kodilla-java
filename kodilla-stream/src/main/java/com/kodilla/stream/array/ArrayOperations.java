@@ -18,3 +18,5 @@ public interface ArrayOperations {
                 .getAsDouble();
     }
 }
+
+
