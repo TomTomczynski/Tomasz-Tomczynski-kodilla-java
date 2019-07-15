@@ -154,7 +154,6 @@ public class BoardTestSuite {
                 .flatMap(tl -> tl.getTasks().stream())
                 .mapToLong(t -> DAYS.between(t.getCreated(), t.getDeadline()))
                 .average();
-
         //Then
         Assert.assertEquals(13, average.getAsDouble(), 0.0);
 
