@@ -1,10 +1,6 @@
 package challenges;
 
-import javax.print.DocFlavor;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class MovieStore {
@@ -34,10 +30,13 @@ class MovieStore {
     public static void main(String[] args) {
         MovieStore movieStore = new MovieStore();
         Map<String, List<String>> moviesList = movieStore.getMovies();
-        moviesList.entrySet().forEach(
-                e -> {
-                    e.getValue().forEach(n -> System.out.print(n + "!"));
-                }
+        System.out.println(moviesList.entrySet()
+                .stream()
+                .flatMap(name -> name.getValue().stream())
+                .collect(Collectors.joining("! "))
         );
     }
 }
+
+
+
