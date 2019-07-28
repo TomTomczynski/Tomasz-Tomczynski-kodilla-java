@@ -4,7 +4,7 @@ public class ExceptionHandling {
     public static void main(String[] args) {
         SecondChallenge secondChallenge = new SecondChallenge();
         try {
-            secondChallenge.probablyIWillThrowException(10, 10);
+            secondChallenge.probablyIWillThrowException(1, 10);
         } catch (Exception e) {
             System.out.println("There were errors");
         }

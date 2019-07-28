@@ -1,11 +1,9 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
 rootProject.name = 'kodilla-course'
 include 'kodilla-testing'
 include 'kodilla-stream'
 include 'kodilla-exception'
 include 'kodilla-good-patterns'
+include 'kodilla-spring-intro'
+include 'com.kodilla.spring.intro.shape'
+include 'kodilla-spring'
 
