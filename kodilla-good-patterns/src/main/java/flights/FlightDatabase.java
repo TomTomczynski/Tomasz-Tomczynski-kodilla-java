@@ -1,14 +1,26 @@
-package Flights;
+package flights;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FlightDatabase {
 
-    final private HashMap<String, ArrayList> flightDatabase = new HashMap<>();
+    final private List<FlightSegment> flightDatabase = new ArrayList<>();
     final private ArrayList<String> flights = new ArrayList<>();
 
+    public FlightDatabase() {
+        flightDatabase.add(new FlightSegment("Barcelona","Vienna"));
+    }
+
+    public List<FlightSegment> findFlighFrom (String city){
+        return flightDatabase
+                .stream()
+                .filter(f->f.getDeparture().equals(city))
+                .collect(Collectors.toList());
+    }
     public void addConnection(String airport, String connectionTo) {
 
         if (flightDatabase.containsKey(airport)) {
@@ -53,15 +65,19 @@ public class FlightDatabase {
                     .flatMap(m -> m.getValue().stream())
                     .forEach(a -> {
                         flightDatabase.entrySet()
-                                .stream()
-                                .forEach(f ->
-                                {
-                                    if (f.getKey().equals(a) && f.getValue().contains(destination))
-                                        flights.add(airport + " --> " + a + " --> " + destination);
-                                });
-                    });
-        }
+                .stream()
+                .forEach(f ->
+                {
+                    displayIfRelative(airport, destination, (Object) a, (Object) f);
+                });
+    });
+}
         return flights;
+    }
+
+    private void displayIfRelative(String airport, String destination, Object a, Object f) {
+        if (f.getKey().equals(a) && f.getValue().contains(destination))
+            flights.add(airport + " --> " + a + " --> " + destination);
     }
 
     public HashMap<String, ArrayList> getFlightDatabase() {

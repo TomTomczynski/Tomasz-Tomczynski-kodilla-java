@@ -1,4 +1,4 @@
-package Flights;
+package flights;
 
 public class FlightApplication {
     public static void main(String[] args) {
