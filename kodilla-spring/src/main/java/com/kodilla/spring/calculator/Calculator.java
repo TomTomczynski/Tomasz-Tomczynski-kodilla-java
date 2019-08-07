@@ -8,19 +8,31 @@ public class Calculator {
     @Autowired
     Display display;
 
-    void add(double a, double b) {
+    double add(double a, double b) {
         display.displayValue(a + b);
+        return a + b;
     }
 
-    void sub(double a, double b) {
+    double sub(double a, double b) {
         display.displayValue(a - b);
+        return a - b;
     }
 
-    void mul(double a, double b) {
+    double mul(double a, double b) {
         display.displayValue(a * b);
+        return a * b;
     }
 
-    void div(double a, double b) {
-        display.displayValue(a / b);
+    double div(double a, double b) {
+        double resulr = 0;
+        try {
+            resulr = a / b;
+
+        } catch (ArithmeticException ae) {
+            System.out.println("ArithmeticException occured!");
+        }
+        display.displayValue(resulr);
+        return resulr;
     }
+
 }
