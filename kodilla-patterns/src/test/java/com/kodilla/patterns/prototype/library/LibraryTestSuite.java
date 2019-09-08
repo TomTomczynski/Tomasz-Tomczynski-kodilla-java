@@ -14,17 +14,12 @@ public class LibraryTestSuite {
         IntStream.iterate(0, n -> n + 1)
                 .limit(6)
                 .forEach(n -> library.getBooks().add(new Book("Title " + n, "Author " + n, LocalDate.now().minusYears(n))));
-//           Book theBook = new Book("Title " + n, "Author " + n, LocalDate.now().minusYears(n));
-//                    library.getBooks().add(theBook);
-        //making a shallow copy of library
         Library shallowCloneLibrary = null;
         try {
             shallowCloneLibrary = library.shallowCopy();
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
-
-
         //making a deep copy of library
         Library deepCloneLibrary = null;
         try {
@@ -33,8 +28,8 @@ public class LibraryTestSuite {
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
+        Book theBook = new Book("Title 0", "Author 0 ", LocalDate.now());
 
-        Book theBook = new Book("Title 0","Author 0 ",LocalDate.now());
         //When
 
         deepCloneLibrary.getBooks().remove(theBook);
@@ -42,6 +37,6 @@ public class LibraryTestSuite {
         //Then
         Assert.assertEquals(6, library.getBooks().size());
         Assert.assertEquals(6, shallowCloneLibrary.getBooks().size());
-        Assert.assertEquals(6, deepCloneLibrary.getBooks().size());
+        Assert.assertEquals(5, deepCloneLibrary.getBooks().size());
     }
 }
