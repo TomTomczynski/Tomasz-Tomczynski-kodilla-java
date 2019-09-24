@@ -8,14 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class TaskListDaoTest {
 
     @Autowired
-    private TaskListDao taskListDao;
+    public TaskListDao taskListDao;
 
     @Test
     public void testFindByListName() {
@@ -31,7 +33,7 @@ public class TaskListDaoTest {
 
         //Then
         System.out.println("Number of Task List in the database: "+ taskListDao.count());
-        Assert.assertEquals(taskListDao.count(), readTaskList.size());
+        Assert.assertEquals(1, readTaskList.size());
         Assert.assertFalse(readTaskList.isEmpty());
 
         //CleanUp

@@ -12,5 +12,5 @@ import java.util.Optional;
 @Transactional
 public interface TaskListDao extends CrudRepository <TaskList,Integer>{
     List<TaskList> findByListName(String listName);
-    Optional<TaskList> findById (Integer id);
+//    Optional<TaskList> findById (Integer id);
 }
