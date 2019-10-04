@@ -13,7 +13,7 @@ public class TaskList {
     private int id;
     private String listName;
     private String description;
-    private List<Task> task = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public TaskList() {
     }
@@ -42,10 +42,6 @@ public class TaskList {
         return description;
     }
 
-    public List<Task> getTasks() {
-        return task;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -64,8 +60,12 @@ public class TaskList {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public void setTask(List<Task> task) {
-        this.task = task;
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

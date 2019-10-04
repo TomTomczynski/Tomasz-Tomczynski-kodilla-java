@@ -22,6 +22,7 @@ public class TaskDaoTestSuite {
     @Autowired
     private TaskDao taskDao;
     private static final String DESCRIPTION = "Test: Learn Hibernate";
+    @Autowired
     private TaskListDao taskListDao;
 
     @Test
@@ -31,8 +32,6 @@ public class TaskDaoTestSuite {
 
         //When
         taskDao.save(task);
-        System.out.println("!!!!!!!!!!! Liczba: " + taskDao.count());
-        System.out.println("!!!!!!!!!!! ID: " + task.getId());
 
         //Then
         int id = task.getId();
@@ -54,7 +53,7 @@ public class TaskDaoTestSuite {
         List<Task> readTasks = taskDao.findByDuration(duration);
 
         //Then
-//        Assert.assertEquals(7, readTasks.size());
+        Assert.assertEquals(1, readTasks.size());
 
         //CleanUp
         //int id = readTasks.get(0).getId();
@@ -76,7 +75,7 @@ public class TaskDaoTestSuite {
         Assert.assertNotEquals(0, id);
 
         //CleanUp
-        //taskDao.deleteById(id);
+        taskDao.deleteById(id);
     }
 
     @Test
@@ -95,6 +94,8 @@ public class TaskDaoTestSuite {
         task2.setTaskList(taskList);
 
         //When
+        Optional<Integer> Test = Optional.of(taskList.getId());
+        Assert.assertTrue(Test.isPresent());
         taskListDao.save(taskList);
         int id = taskList.getId();
 
@@ -102,6 +103,62 @@ public class TaskDaoTestSuite {
         Assert.assertNotEquals(0, id);
 
         //CleanUp
-        //taskListDao.deleteById(id);
+        taskListDao.deleteById(id);
+    }
+    @Test
+    public void testNamedQueries() {
+        //Given
+        Task task1 = new Task("Test: Study Hibernate", 3);
+        Task task2 = new Task("Test: Practice Named Queries", 6);
+        Task task3 = new Task("Test: Study native queries", 7);
+        Task task4 = new Task("Test: Makse some tests", 13);
+
+        TaskFinancialDetails tfd1 = new TaskFinancialDetails(new BigDecimal(5), false);
+        TaskFinancialDetails tfd2 = new TaskFinancialDetails(new BigDecimal(10), false);
+        TaskFinancialDetails tfd3 = new TaskFinancialDetails(new BigDecimal(20), false);
+        TaskFinancialDetails tfd4 = new TaskFinancialDetails(new BigDecimal(15), false);
+
+        task1.setTaskFinancialDetails(tfd1);
+        task2.setTaskFinancialDetails(tfd2);
+        task3.setTaskFinancialDetails(tfd3);
+        task4.setTaskFinancialDetails(tfd4);
+
+        TaskList taskList = new TaskList("LISTNAME", "ToDo tasks");
+        taskList.getTasks().add(task1);
+        taskList.getTasks().add(task2);
+        taskList.getTasks().add(task3);
+        taskList.getTasks().add(task4);
+
+        task1.setTaskList(taskList);
+        task2.setTaskList(taskList);
+        task3.setTaskList(taskList);
+        task4.setTaskList(taskList);
+
+        taskListDao.save(taskList);
+        int id = taskList.getId();
+
+        //When
+        List<Task> longTasks = taskDao.retrieveLongTasks();
+        List<Task> shortTasks = taskDao.retrieveShortTasks();
+        List<Task> enoughTimeTasks = taskDao.retrieveTasksWithEnoughTime();
+        List<Task> retrieveTasksWithDurationLongerThen = taskDao.retrieveTasksWithDurationLongerThen(6);
+
+        System.out.println("longTasks: "+ longTasks.size() + " 1");
+        System.out.println("shortTasks: "+ shortTasks.size()+ " 3");
+        System.out.println("enoughTimeTasks: "+ enoughTimeTasks.size()+ " 3");
+        System.out.println("enoughTimeTasks: "+ retrieveTasksWithDurationLongerThen.size()+ " 3");
+
+
+
+        //Then
+        try {
+            Assert.assertEquals(1, longTasks.size());
+            Assert.assertEquals(3, shortTasks.size());
+            Assert.assertEquals(3, enoughTimeTasks.size());
+            Assert.assertEquals(2, retrieveTasksWithDurationLongerThen.size());
+        } finally {
+            //CleanUp
+            taskListDao.deleteById(id);
+        }
     }
 }

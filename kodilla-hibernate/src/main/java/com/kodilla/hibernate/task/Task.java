@@ -6,8 +6,32 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = "Task.retrieveLongTasks",
+                        query = "FROM Task WHERE duration > 10"
+                ),
+                @NamedQuery(
+                        name = "Task.retrieveShortTasks",
+                        query = "FROM Task WHERE duration <= 10"
+                ),
+                @NamedQuery(
+                        name = "Task.retrieveTasksWithDurationLongerThen",
+                        query = "FROM Task WHERE duration > :DURATION"
+                )
+        })
+@NamedNativeQuery(
+        name = "Task.retrieveTasksWithEnoughTime",
+        query = "select * from tasks " +
+                "where datediff(DATE_ADD(created,INTERVAL duration DAY), NOW()) > 5",
+        resultClass = Task.class
+)
+
+
 @Entity
-@Table(name = "Task")
+@Table(name = "Tasks")
 public final class Task {
     private int id;
     private String description;
@@ -27,7 +51,6 @@ public final class Task {
     }
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.TABLE)
     @GeneratedValue
     @NotNull
     @Column(name = "Id", unique = true)
@@ -58,13 +81,17 @@ public final class Task {
     }
 
     @ManyToOne
-    @JoinColumn(name="TASKLIST_ID")
+    @JoinColumn(name = "TASKLIST_ID")
     public TaskList getTaskList() {
         return taskList;
     }
 
     public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
         this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTaskList(TaskList tasksList) {
+        this.taskList = tasksList;
     }
 
     private void setId(int id) {
@@ -83,7 +110,4 @@ public final class Task {
         this.duration = duration;
     }
 
-    public void setTaskList(TaskList taskList) {
-        this.taskList = taskList;
-    }
 }

@@ -6,10 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
-@Repository
 @Transactional
+@Repository
 public interface TaskListDao extends CrudRepository <TaskList,Integer>{
     List<TaskList> findByListName(String listName);
 //    Optional<TaskList> findById (Integer id);
