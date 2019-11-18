@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 @Configuration
 
@@ -23,8 +22,8 @@ public class BoardConfig {
     TaskList inProgressList;
 
     @Bean
-    public Board getTaskLists(){
-        return new Board(toDoList,doneList,inProgressList);
+    public Board getTaskLists() {
+        return new Board(toDoList, doneList, inProgressList);
     }
 
     @Bean(name = "doneList")

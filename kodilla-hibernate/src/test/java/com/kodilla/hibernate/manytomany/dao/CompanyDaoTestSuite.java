@@ -121,10 +121,8 @@ public class CompanyDaoTestSuite {
 //            employeeDao.deleteAll();
             employeeDao.deleteById(result.getId());
         } catch (Exception e) {
-
             //do nothing
             System.out.println("Exception:" + e.toString());
         }
     }
-
 }

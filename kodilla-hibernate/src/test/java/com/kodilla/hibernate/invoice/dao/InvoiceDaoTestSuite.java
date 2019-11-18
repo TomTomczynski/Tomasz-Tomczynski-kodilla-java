@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 public class InvoiceDaoTestSuite {
 
     @Autowired
@@ -58,5 +58,12 @@ public class InvoiceDaoTestSuite {
         Assert.assertNotEquals(0, invoice.getId());
         Assert.assertNotEquals(0, item1.getId());
         Assert.assertNotEquals(0, item2.getId());
+
+        itemDao.deleteById(item1.getId());
+        itemDao.deleteById(item2.getId());
+        invoiceDao.deleteById(invoice.getId());
+        productDao.deleteById(product1.getId());
+        productDao.deleteById(product2.getId());
+
     }
 }
